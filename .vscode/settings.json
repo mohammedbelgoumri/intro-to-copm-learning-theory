@@ -42,3 +42,37 @@
     ],
     "latex-workshop.latex.recipe.default": "build"
 }
+
+// {
+//     "latex-workshop.latex.autoBuild.run": "never",   
+//     "latex-workshop.latex.tools": [
+//         {
+//             "name": "compile",
+//             "command": "latexmk",
+//             "args": [
+//                 "-pdf",
+//                 "main.tex"
+//             ],
+//             "env": {}
+//         },
+//         {
+//             "name": "clean",
+//             "command": "latexmk",
+//             "args": [
+//                 "-c",
+//                 "%DOC%.tex"
+//             ]
+//         }
+//     ],
+
+//     "latex-workshop.latex.recipes": [
+//         {
+//             "name": "build",
+//             "tools": [
+//                 "compile",
+//                 "clean"
+//             ]
+//         }
+//     ],
+//     "latex-workshop.latex.recipe.default": "build"
+// }
