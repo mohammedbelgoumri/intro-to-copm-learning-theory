@@ -1,0 +1,44 @@
+{
+    "latex-workshop.latex.autoBuild.run": "onSave",   
+    "latex-workshop.latex.tools": [
+        {
+            "name": "compile",
+            "command": "latexmk",
+            "args": [
+                "-pdf",
+                "main.tex",
+                "-jobname=notes"
+                // "%DOC%.tex"
+            ],
+            "env": {}
+        },
+        {
+            "name": "clean",
+            "command": "latexmk",
+            "args": [
+                "-c",
+                // "%DOC%.tex"
+                "main.tex"
+            ]
+        },
+        {
+            "name": "biber",
+            "command": "biber",
+            "args": [
+                "main"
+            ]
+        }
+    ],
+
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "build",
+            "tools": [
+                "compile",
+                // "biber",
+                "clean"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipe.default": "build"
+}
