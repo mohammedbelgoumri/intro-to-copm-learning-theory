@@ -9,7 +9,7 @@
 
     \begin{figure}
         \begin{center}
-            \includegraphics[width=8cm]{traget-and-sample.pdf}
+            \includegraphics[width=8cm]{traget-and-sample.pdf}  
         \end{center}
         \caption{The target rectangle \(\rectangle\) along with a labeled sample of points}
         \label{fig:traget-and-sample}
@@ -39,5 +39,25 @@
     \end{theorem}
 
     \begin{proof}
+        \ \\
+        Consider a distribution \(\mathcal{D}\), a rectangle \(\rectangle = [a, b]\times[c, d]\), a hypothesis rectangle \(\rectangle^\prime = [a^\prime, b^\prime] \times [c^\prime, d^\prime]\) constructed using the startegy we described, and positive real numbers \(\varepsilon, \delta>0\).
+
+        Note that \(\rectangle^\prime\) cannot have false positives. In fact, \(\rectangle^\prime\subset\rectangle\) and therefore \(\rectangle^\prime~\Delta\rectangle = \rectangle\backslash\rectangle^\prime\). 
+        This region can be expressed as the union of four rectangles: 
+
+        \[
+            \begin{array}{ccc}
+                \rectangle\backslash\rectangle^\prime = & [a, a^\prime] \times [c^\prime, d^\prime]& \cup\\
+                    & [a, b] \times [c, c^\prime] & \cup\\
+                    & [b^\prime, b] \times [c^\prime, d^\prime] & \cup\\
+                    & [a, b] \times [d, d^\prime]
+            \end{array}
+        \]
+        We denote the union of four rectangles respectively by \(L, B, R, T\). It immediately follows that:
+        \[
+            \mathbb{P}(\rectangle\backslash\rectangle^\prime) = \mathbb{P}(L \cup B \cup R \cup T) \le \mathbb{P}(L) + \mathbb{P}(B) + \mathbb{P}(R) + \mathbb{P}(T)    
+        \]
         
+        Consequently, to show that \(\mathbb{P}(\rectangle\backslash\rectangle^\prime) \le \varepsilon\), it suffices to show that \(\mathbb{P}(X) \le \frac{\varepsilon}{4}\) for all \(X\in\{L, B, R, T\}\).
+
     \end{proof}
