@@ -20,8 +20,9 @@
     Since \(\rectangle\) is unknown in practice, \(\rectangle^\prime\) is evaluated by sampling a number of points from \(\mathcal{D}\), labeling them using \(\rectangle^\prime\) and comparing to their true labels by asking the game. We then take the number of falsely labeled points devided by the total of chosen points as an estimation of \(\mathbb{P}(\rectangle\Delta\rectangle^\prime)\).
     Note that this score is the same as \(1 - \mathrm{accuracy}\).
 
-    A simple strategy for the player is to sample a sufficiently large number \(m\) of points form \(\mathcal{D}\) and request their labels, then chose as hypothesis \(\rectangle^\prime\) the smallest rectangle containing all positive examples and no negative ones\footnote{Note that such at least one rectangle with this property is garenteed to exist, because \(\rectangle\) is one such a rectangle}. If all \(m\) points are negative, we chose \(\rectangle^\prime = \emptyset\). Figure~\ref{fig:traget-hypothesis-and-sample} ilustrates this for one example.
+    A simple strategy for the player is to sample a sufficiently large number \(m\) of points form \(\mathcal{D}\) and request their labels, then chose as hypothesis \(\rectangle^\prime\) the smallest rectangle containing all positive examples and no negative ones\footnote{Note that such at least one rectangle with this property is garenteed to exist, because \(\rectangle\) is one such a rectangle}. If all \(m\) points are negative, we chose \(\rectangle^\prime = \emptyset\). Figure~\ref{fig:traget-hypothesis-and-sample} ilustrates this strategy for one example, and Code~Snippet~\ref{lst:python-learning-rectangle} shows a python implementation.
 
+    
     \begin{figure}
         \begin{center}
             \includegraphics[width=8cm]{traget-hypothesis-and-sample.pdf}
@@ -29,6 +30,21 @@
         \caption{The tightest fit rectangle for the example of Figure~\ref{fig:traget-and-sample}}
         \label{fig:traget-hypothesis-and-sample}
     \end{figure}
+
+    \begin{lstlisting}[language=python, caption={A python implementation of the described strategy}, label={lst:python-learning-rectangle}]
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from matplotlib.patches import Rectangle
+
+def fit_rectangle(X, y, ec='black', alpha=.1) -> Rectangle:
+"""
+Fit a rectangle to the given data.
+"""
+h_min = X[y].min(axis=0)
+h_max = X[y].max(axis=0)
+return Rectangle(h_min, *(h_max - h_min), edgecolor=ec, alpha=alpha)
+    \end{lstlisting}
 
     We will now prove that this strategy works, more specifically, we will show the following theorem:
 
