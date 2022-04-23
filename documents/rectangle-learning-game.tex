@@ -30,20 +30,7 @@ A simple strategy for the player is to sample a sufficiently large number \(m\) 
     \label{fig:traget-hypothesis-and-sample}
 \end{figure}
 
-\begin{lstlisting}[language=python, caption={A python implementation of the described strategy}, label={lst:python-learning-rectangle}]
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from matplotlib.patches import Rectangle
-
-def fit_rectangle(X, y, ec='black', alpha=.1) -> Rectangle:
-"""
-Fit a rectangle to the given data.
-"""
-h_min = X[y].min(axis=0)
-h_max = X[y].max(axis=0)
-return Rectangle(h_min, *(h_max - h_min), edgecolor=ec, alpha=alpha)
-\end{lstlisting}
+\lstinputlisting[language=python, caption={A python implementation of the described strategy}, label={lst:python-learning-rectangle}, firstline=14, lastline=20]{../source/rectangle-learning.py}
 
 We will now prove that this strategy works, more specifically, we will show the following theorem:
 
