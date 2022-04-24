@@ -8,7 +8,7 @@ Figure~\ref{fig:traget-and-sample} shows an example of a possible target rectang
 
 \begin{figure}
     \begin{center}
-        \includegraphics[width=\textwidth]{target-and-sample.png}  
+        \includegraphics[width=10cm]{target-and-sample.png}  
     \end{center}
     \caption{The target rectangle \(\rectangle\) along with a labeled sample of points}
     \label{fig:traget-and-sample}
@@ -16,21 +16,20 @@ Figure~\ref{fig:traget-and-sample} shows an example of a possible target rectang
 
 The player's goal is to find a hypothesis rectangle \(\rectangle^\prime\) that ``approximates'' \(\rectangle\) ``as closely as possible''. To measure the quality of this approximation, we will consider the region \(\rectangle\Delta\rectangle^\prime\) of points that \(\rectangle\) and \(\rectangle^\prime\) label differntly. More precisely, we will consider the probability \(\mathbb{P}(\rectangle\Delta\rectangle^\prime)\) of falling with this region according to \(\mathcal{D}\) and try to minimize this quantity.
 
-Since \(\rectangle\) is unknown in practice, \(\rectangle^\prime\) is evaluated by sampling a number of points from \(\mathcal{D}\), labeling them using \(\rectangle^\prime\) and comparing to their true labels by asking the game. We then take the number of falsely labeled points devided by the total of chosen points as an estimation of \(\mathbb{P}(\rectangle\Delta\rectangle^\prime)\).
-Note that this score is the same as \(1 - \mathrm{accuracy}\).
+Since \(\rectangle\) is unknown in practice, \(\rectangle^\prime\) is evaluated by sampling a number of points from \(\mathcal{D}\), labeling them using \(\rectangle^\prime\) and comparing to their true labels by asking the game. We then take the number of falsely labeled points devided by the total of chosen points as an estimation of \(\mathbb{P}(\rectangle\Delta\rectangle^\prime)\)\footnote{In fact, this quantity is none aother than \(\mathrm{error\ rate} \colonequals 1 - \mathrm{accuracy}\).}.
 
 A simple strategy for the player is to sample a sufficiently large number \(m\) of points form \(\mathcal{D}\) and request their labels, then chose as hypothesis \(\rectangle^\prime\) the smallest rectangle containing all positive examples and no negative ones\footnote{Note that such at least one rectangle with this property is garenteed to exist, because \(\rectangle\) is one such a rectangle}. If all \(m\) points are negative, we chose \(\rectangle^\prime = \emptyset\). Figure~\ref{fig:traget-hypothesis-and-sample} ilustrates this strategy for one example, and Code~Snippet~\ref{lst:python-learning-rectangle} shows a python implementation.
 
 
 \begin{figure}
     \begin{center}
-        \includegraphics[width=8cm]{traget-hypothesis-and-sample.pdf}
+        \includegraphics[width=10cm]{target-hypothesis-and-sample.png}
     \end{center}
     \caption{The tightest fit rectangle for the example of Figure~\ref{fig:traget-and-sample}}
     \label{fig:traget-hypothesis-and-sample}
 \end{figure}
 
-\lstinputlisting[language=python, caption={A python implementation of the described strategy}, label={lst:python-learning-rectangle}, firstline=14, lastline=20]{../source/rectangle-learning.py}
+\lstinputlisting[language=python, caption={A python implementation of the described strategy}, label={lst:python-learning-rectangle}, firstline=14, lastline=20]{../code/rectangle-learning.py}
 
 We will now prove that this strategy works, more specifically, we will show the following theorem:
 
