@@ -691,3 +691,4 @@ cython_debug/
 examples.py
 manim.cfg
 documents/assets/
+ub/
